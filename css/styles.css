@@ -1,0 +1,1033 @@
+/* =========================================================
+   FIKA RITUAL — Hoja de estilos
+   Un solo archivo CSS para las 5 páginas.
+   Orden: 1) Variables  2) Base  3) Header  4) Botones
+          5) Secciones de cada página  6) Responsive
+   ========================================================= */
+
+
+/* ---------- 1. VARIABLES (colores y fuentes) ----------
+   Si querés cambiar un color en toda la página,
+   lo cambiás acá una sola vez. */
+:root {
+  --beige: #e9e3d8;        /* fondo general */
+  --beige-claro: #efeae1;  /* fondo de bandas / tarjetas */
+  --oliva: #5b5f3c;        /* verde de botones y detalles */
+  --oliva-oscuro: #3f4229;
+  --terracota: #b4603a;    /* botones naranjas */
+  --texto: #3a372d;        /* texto principal */
+  --texto-suave: #6b665a;  /* textos secundarios */
+  --linea: #c9c1b3;        /* líneas divisorias */
+
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
+
+  --ancho-max: 1280px;     /* ancho máximo del contenido */
+  --margen: clamp(20px, 4vw, 56px); /* margen lateral que se adapta a la pantalla */
+}
+
+
+/* ---------- 2. BASE ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--beige);
+  color: var(--texto);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;   /* las imágenes nunca se salen de su contenedor */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* Contenedor centrado que usan todas las secciones */
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 var(--margen);
+}
+
+/* Etiqueta chiquita en mayúsculas ("SOBRE NOSOTROS", etc.) */
+.etiqueta {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--texto);
+  margin-bottom: 10px;
+}
+
+/* Rayita corta debajo de los títulos */
+.rayita {
+  display: block;
+  width: 36px;
+  height: 2px;
+  background-color: var(--oliva);
+  margin: 14px 0 22px;
+}
+
+
+/* ---------- 3. HEADER / NAVEGACIÓN ---------- */
+.header {
+  background-color: var(--beige);
+  border-bottom: 1px solid var(--linea);
+  position: sticky;   /* queda fijo arriba al hacer scroll */
+  top: 0;
+  z-index: 100;
+}
+
+.header .contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 96px;
+}
+
+/* Logo hecho con texto */
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.logo-fika {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 40px;
+  letter-spacing: 0.12em;
+  color: var(--oliva-oscuro);
+}
+
+.logo-ritual {
+  font-size: 10px;
+  letter-spacing: 0.45em;
+  margin-top: 6px;
+  margin-right: -0.45em; /* compensa el espaciado para que quede centrado */
+  color: var(--oliva);
+}
+
+/* Links del menú */
+.nav ul {
+  display: flex;
+  gap: clamp(28px, 4vw, 64px);
+}
+
+.nav a {
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding-bottom: 8px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.nav a:hover,
+.nav a.activo {
+  border-bottom-color: var(--texto); /* subrayado de la página actual */
+}
+
+/* El botón hamburguesa, el checkbox y el link "Contacto" del menú
+   solo se usan en celular */
+.menu-toggle,
+.hamburguesa,
+.solo-celular {
+  display: none;
+}
+
+
+/* ---------- 4. BOTONES ---------- */
+.boton {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border-radius: 2px;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+}
+
+.boton-oliva {
+  background-color: var(--oliva);
+  color: var(--beige-claro);
+}
+
+.boton-oliva:hover {
+  background-color: var(--oliva-oscuro);
+}
+
+.boton-borde {
+  border: 1px solid var(--oliva-oscuro);
+  color: var(--oliva-oscuro);
+}
+
+.boton-borde:hover {
+  background-color: var(--oliva);
+  color: var(--beige-claro);
+}
+
+.boton-terracota {
+  background-color: var(--terracota);
+  color: #fff;
+}
+
+.boton-terracota:hover {
+  background-color: #9a4f2e;
+}
+
+/* Botón grande del hero ("Conoce fika", "Como llegar") */
+.boton-grande {
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  padding: 10px 36px;
+  border-radius: 4px;
+}
+
+
+/* ---------- 5A. INICIO ---------- */
+.hero {
+  position: relative;
+  height: min(80vh, 640px);
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* La foto ocupa todo el fondo del hero */
+.hero-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* recorta la foto sin deformarla */
+  object-position: center 55%;
+}
+
+/* Degradé oscuro a la izquierda para que se lea el texto */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(40, 32, 20, 0.55) 0%, rgba(40, 32, 20, 0.15) 50%, transparent 75%);
+  z-index: 1;
+}
+
+.hero-texto {
+  position: relative;
+  z-index: 2;   /* queda por encima de la foto y del degradé */
+  color: #fff;
+}
+
+.hero-texto h1 {
+  font-size: clamp(44px, 6vw, 76px);
+}
+
+.ramita {
+  display: block;
+  width: 110px;
+  margin: 26px 0 30px;
+  color: #fff;
+}
+
+/* Las 4 columnas debajo del hero */
+.pilares {
+  background-color: var(--beige-claro);
+  padding: 48px 0;
+}
+
+.pilares ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.pilares li {
+  text-align: center;
+  padding: 10px 20px;
+  border-left: 1px solid var(--linea);
+}
+
+.pilares li:first-child {
+  border-left: none;
+}
+
+.pilares svg {
+  width: 40px;
+  height: 40px;
+  color: var(--texto);
+}
+
+.pilares h3 {
+  font-family: var(--sans);
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  margin: 20px 0 26px;
+}
+
+.ver-mas {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ver-mas span {
+  transition: transform 0.3s;
+}
+
+.ver-mas:hover span {
+  transform: translateX(5px);  /* la flechita se mueve al pasar el mouse */
+}
+
+/* Banda verde con textura al final */
+.banda-verde {
+  height: 90px;
+  background-color: var(--oliva);
+}
+
+
+/* ---------- 5B. MENÚ ---------- */
+.hero-chico {
+  position: relative;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  background-color: #565b37; /* verde del plato, completa el lado izquierdo */
+  overflow: hidden;
+}
+
+.hero-chico .hero-foto {
+  left: auto;
+  width: 75%;
+  object-position: center 30%;
+}
+
+.hero-chico .hero-texto h1 {
+  font-size: clamp(44px, 5vw, 64px);
+}
+
+.hero-chico .ramita {
+  margin: 14px 0 0;
+  width: 90px;
+}
+
+.menu {
+  padding: 40px 0 70px;
+  border-bottom: 1px solid var(--linea);
+}
+
+/* --- Pestañas hechas solo con CSS ---
+   Cada pestaña es un <input type="radio"> escondido + su <label>.
+   Cuando un radio está marcado (:checked), se muestra su lista. */
+.tab-radio {
+  display: none;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+
+.tabs label {
+  width: 140px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 10px 0;
+  border: 1px solid var(--linea);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tabs label:hover {
+  border-color: var(--oliva);
+}
+
+.lista-menu {
+  display: none;   /* todas las listas escondidas... */
+}
+
+/* ...y se muestra solo la que corresponde a la pestaña marcada */
+#tab-cafe:checked ~ .listas #lista-cafe,
+#tab-dulce:checked ~ .listas #lista-dulce,
+#tab-salado:checked ~ .listas #lista-salado,
+#tab-bebidas:checked ~ .listas #lista-bebidas {
+  display: grid;
+}
+
+/* Pestaña activa en verde */
+#tab-cafe:checked ~ .tabs label[for="tab-cafe"],
+#tab-dulce:checked ~ .tabs label[for="tab-dulce"],
+#tab-salado:checked ~ .tabs label[for="tab-salado"],
+#tab-bebidas:checked ~ .tabs label[for="tab-bebidas"] {
+  background-color: var(--oliva);
+  border-color: var(--oliva);
+  color: var(--beige-claro);
+}
+
+.lista-menu {
+  grid-template-columns: 1fr 1fr;
+  column-gap: 60px;
+  row-gap: 18px;
+}
+
+.producto {
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  gap: 0 30px;
+  align-items: start;
+}
+
+.producto img {
+  width: 92px;
+  height: 88px;
+  object-fit: cover;
+}
+
+.producto-info {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--linea);
+  grid-column: 2 / 4;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.producto h3 {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 14px 0 6px;
+}
+
+.producto p {
+  grid-column: 1;
+  font-size: 13px;
+  color: var(--texto-suave);
+  max-width: 190px;
+  line-height: 1.5;
+}
+
+.precio {
+  grid-column: 2;
+  grid-row: 1;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+/* Tarjeta simple para productos sin foto (dulce, salado, bebidas) */
+.producto.sin-foto {
+  grid-template-columns: 1fr;
+}
+
+.producto.sin-foto .producto-info {
+  grid-column: 1;
+}
+
+
+/* ---------- 5C. FIKA (sobre nosotros) ---------- */
+.bloque {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--linea);
+}
+
+.bloque h2 {
+  font-size: clamp(26px, 2.6vw, 34px);
+}
+
+.bloque p {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.sobre {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.sobre p {
+  max-width: 380px;
+}
+
+.foto-ancha {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+}
+
+.origen {
+  display: grid;
+  grid-template-columns: 0.85fr 2fr;
+}
+
+.origen-texto {
+  padding-right: 34px;
+  border-right: 1px solid var(--linea);
+}
+
+.esencia {
+  padding-left: 34px;
+}
+
+.esencia ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.esencia li {
+  padding: 0 22px;
+  border-left: 1px solid var(--linea);
+}
+
+.esencia li:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+/* Círculo beige con el ícono adentro */
+.icono-circulo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ddd5c6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.icono-circulo svg {
+  width: 26px;
+  height: 26px;
+}
+
+.esencia h3 {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.esencia p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.el-espacio {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+  border-bottom: none;
+}
+
+.el-espacio img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
+
+/* ---------- 5D. ESPACIO ---------- */
+.espacio-intro {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 40px;
+  align-items: center;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.espacio-intro h1 {
+  font-size: clamp(34px, 3.4vw, 44px);
+  font-weight: 600;
+}
+
+.espacio-intro .rayita {
+  margin-bottom: 40px;
+}
+
+.espacio-intro img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+.ambientes {
+  border-top: 1px solid var(--linea);
+  padding: 22px 0 40px;
+  text-align: center;
+}
+
+.ambientes h2 {
+  font-size: clamp(30px, 3vw, 38px);
+  font-weight: 600;
+}
+
+.subtitulo {
+  font-size: 15px;
+  margin-bottom: 26px;
+}
+
+.ambientes ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.ambientes li {
+  padding: 0 32px;
+  border-left: 1px solid var(--linea);
+}
+
+.ambientes li:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.ambientes li:last-child {
+  padding-right: 0;
+}
+
+/* Contenedor de la foto: sirve para hacer zoom al pasar el mouse */
+.ambiente-foto {
+  overflow: hidden;
+}
+
+.ambiente-foto img {
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+
+.ambientes li:hover .ambiente-foto img {
+  transform: scale(1.05);
+}
+
+.ambientes .icono-circulo {
+  width: 64px;
+  height: 64px;
+  margin: 14px auto 12px;
+}
+
+.ambientes .icono-circulo svg {
+  width: 32px;
+  height: 32px;
+}
+
+.ambientes h3 {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+
+/* ---------- 5E. INFO ---------- */
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 40px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--linea);
+}
+
+.info h2 {
+  font-size: clamp(30px, 3vw, 38px);
+  font-weight: 600;
+}
+
+.ubicacion {
+  padding-right: 56px;
+  border-right: 1px solid var(--linea);
+}
+
+.mapa {
+  width: 100%;
+  height: 360px;
+  border: 1px solid var(--texto-suave);
+  display: block;
+}
+
+.direccion {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 26px 0 22px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.direccion svg {
+  width: 32px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.contacto-col {
+  padding-left: 56px;
+}
+
+.horario {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--linea);
+  max-width: 380px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.horario:first-of-type {
+  padding-top: 0;
+}
+
+.horario svg {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+#contacto {
+  margin-top: 30px;
+  scroll-margin-top: 120px; /* para que el header no lo tape al saltar */
+}
+
+.redes li a {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 8px 0;
+  font-size: 17px;
+}
+
+.redes .icono-circulo {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  transition: background-color 0.3s;
+}
+
+.redes a:hover .icono-circulo {
+  background-color: #cfc5b2;
+}
+
+
+/* ---------- FOOTER ---------- */
+.footer {
+  padding: 30px 0;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+
+/* =========================================================
+   6. RESPONSIVE
+   Primero los estilos de computadora (arriba) y acá
+   ajustamos para tablet y celular con @media.
+   ========================================================= */
+
+/* ---- TABLET (hasta 1024px) ---- */
+@media (max-width: 1024px) {
+
+  .nav ul {
+    gap: 24px;
+  }
+
+  .origen {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .origen-texto {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .esencia {
+    padding-left: 0;
+  }
+
+  .el-espacio {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .el-espacio .el-espacio-texto {
+    grid-column: 1 / 3;   /* el texto ocupa todo el ancho */
+    grid-row: 1;
+  }
+
+  .ambientes li {
+    padding: 0 16px;
+  }
+}
+
+
+/* ---- CELULAR (hasta 768px) ---- */
+@media (max-width: 768px) {
+
+  /* --- Menú hamburguesa (solo CSS) ---
+     El checkbox escondido guarda si el menú está abierto o cerrado. */
+  .header .contenedor {
+    height: 76px;
+  }
+
+  .logo-fika {
+    font-size: 32px;
+  }
+
+  .hamburguesa {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    padding: 10px 0;
+    order: 3;
+  }
+
+  .hamburguesa span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: var(--oliva-oscuro);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  /* El menú se esconde arriba y aparece al tocar la hamburguesa */
+  .nav {
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background-color: var(--beige);
+    border-bottom: 1px solid var(--linea);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 26px 0 32px;
+  }
+
+  .menu-toggle:checked ~ .nav {
+    max-height: 400px;
+  }
+
+  .solo-celular {
+    display: block;
+  }
+
+  /* La hamburguesa se convierte en una X */
+  .menu-toggle:checked ~ .hamburguesa span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .menu-toggle:checked ~ .hamburguesa span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle:checked ~ .hamburguesa span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .header .boton {
+    padding: 9px 14px;
+    font-size: 11px;
+    margin-left: auto;
+    margin-right: 18px;
+  }
+
+  /* Inicio */
+  .hero {
+    height: 75vh;
+  }
+
+  .hero::before {
+    background: linear-gradient(0deg, rgba(40, 32, 20, 0.6) 0%, rgba(40, 32, 20, 0.2) 60%, transparent 100%);
+  }
+
+  .hero {
+    align-items: flex-end;
+    padding-bottom: 50px;
+  }
+
+  .pilares ul {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 30px;
+  }
+
+  .pilares li:nth-child(3) {
+    border-left: none;
+  }
+
+  /* Menú */
+  .hero-chico {
+    height: 220px;
+  }
+
+  .hero-chico .hero-foto {
+    width: 100%;
+    opacity: 0.55;
+  }
+
+  .tabs label {
+    width: calc(50% - 8px);  /* 2 pestañas por fila */
+  }
+
+  .lista-menu {
+    grid-template-columns: 1fr;  /* una sola columna */
+  }
+
+  .producto {
+    grid-template-columns: 80px 1fr;
+    gap: 0 18px;
+  }
+
+  .producto img {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Fika */
+  .sobre,
+  .esencia ul,
+  .el-espacio {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre p {
+    max-width: none;
+  }
+
+  .esencia ul {
+    gap: 26px;
+  }
+
+  .esencia li {
+    border-left: none;
+    padding: 0 0 22px;
+    border-bottom: 1px solid var(--linea);
+  }
+
+  .esencia li:last-child {
+    border-bottom: none;
+  }
+
+  .el-espacio .el-espacio-texto {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .el-espacio img {
+    height: 200px;
+  }
+
+  /* Espacio */
+  .espacio-intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .espacio-intro .rayita {
+    margin-bottom: 24px;
+  }
+
+  .espacio-intro img {
+    height: 240px;
+  }
+
+  .ambientes ul {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .ambientes li {
+    border-left: none;
+    padding: 0;
+  }
+
+  .ambiente-foto img {
+    height: 220px;
+  }
+
+  /* Info */
+  .info {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .ubicacion {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .contacto-col {
+    padding-left: 0;
+  }
+
+  .mapa {
+    height: 280px;
+  }
+}
+
+
+/* ---- CELULAR CHICO (hasta 420px) ---- */
+@media (max-width: 420px) {
+
+  .header .boton {
+    display: none;   /* "Contacto" ya está en el menú hamburguesa */
+  }
+}
